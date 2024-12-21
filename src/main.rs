@@ -583,7 +583,7 @@ struct InvType
 	ubGraphicNum: u16,
 	ubWeight: u16, //2 units per kilogram, roughly 1 unit per pound
 	ItemSize: u16,
-	usPrice: u16,
+	usPrice: u32,
 	discardedlauncheritem: u16,
 	randomitem: u16, // Flugente: a link to RandomItemsClass.xml. Out of such an item, a random object is created, depending on the entries in the xml
 	usBuddyItem: u16, // Flugente: item is connected to another item. Type of connection depends on item specifics
@@ -915,7 +915,7 @@ impl Items
 						b"ubPerPocket" => { item.ubPerPocket = parseu8(reader, buf, &name); }
 						b"ItemSize" => { item.ItemSize = parseu16(reader, buf, &name); }
 						b"ItemSizeBonus" => { item.itemsizebonus = parsei16(reader, buf, &name); }
-						b"usPrice" => { item.usPrice = parseu16(reader, buf, &name); }
+						b"usPrice" => { item.usPrice = parseu32(reader, buf, &name); }
 						b"ubCoolness" => { item.ubCoolness = parseu8(reader, buf, &name); }
 						b"bReliability" => { item.bReliability = parsei8(reader, buf, &name); }
 						b"bRepairEase" => { item.bRepairEase = parsei8(reader, buf, &name); }
