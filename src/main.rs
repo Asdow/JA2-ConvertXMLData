@@ -1048,6 +1048,16 @@ impl Items
 							let bit = parseu8(reader, buf, &name);
 							item.usItemFlag = set_bit_at(item.usItemFlag, 0, bit).unwrap();
 						}
+						b"diseaseprotectionface" => 
+						{
+							let bit = parseu8(reader, buf, &name);
+							item.usItemFlag = set_bit_at(item.usItemFlag, 29, bit).unwrap();
+						}
+						b"diseaseprotectionhand" => 
+						{
+							let bit = parseu8(reader, buf, &name);
+							item.usItemFlag = set_bit_at(item.usItemFlag, 30, bit).unwrap();
+						}
 						b"emptybloodbag" => 
 						{
 							let bit = parseu8(reader, buf, &name);
