@@ -1621,6 +1621,18 @@ impl Items
 			let value = i.bRepairEase;
 			write_tag_i!(buffer, value, "bRepairEase", forcewriteFirst);
 
+			let value = i.inseparable;
+			write_tag_i!(buffer, value, "Inseparable", forcewriteFirst);
+
+			let value = i.BR_NewInventory;
+			write_tag_i!(buffer, value, "BR_NewInventory", forcewriteFirst);
+
+			let value = i.BR_UsedInventory;
+			write_tag_i!(buffer, value, "BR_UsedInventory", forcewriteFirst);
+
+			let value = i.BR_ROF;
+			write_tag_i!(buffer, value, "BR_ROF", forcewriteFirst);
+
 			let value = i.drugtype;
 			write_tag_i!(buffer, value, "DrugType", forcewriteFirst);
 	
@@ -1843,9 +1855,6 @@ impl Items
 			let value = i.usAdministrationModifier;
 			write_tag_i!(buffer, value, "usAdministrationModifier", forcewriteFirst);
 
-			let value = i.inseparable;
-			write_tag_i!(buffer, value, "Inseparable", forcewriteFirst);
-
 			let value = i.LockPickModifier;
 			write_tag_i!(buffer, value, "LockPickModifier", forcewriteFirst);
 
@@ -1875,15 +1884,6 @@ impl Items
 
 			let value = i.iTransportGroupMaxProgress;
 			write_tag_i!(buffer, value, "TransportGroupMaxProgress", forcewriteFirst);
-
-			let value = i.BR_NewInventory;
-			write_tag_i!(buffer, value, "BR_NewInventory", forcewriteFirst);
-
-			let value = i.BR_UsedInventory;
-			write_tag_i!(buffer, value, "BR_UsedInventory", forcewriteFirst);
-
-			let value = i.BR_ROF;
-			write_tag_i!(buffer, value, "BR_ROF", forcewriteFirst);
 
 			for p in &i.defaultattachments
 			{
