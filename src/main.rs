@@ -1635,7 +1635,10 @@ impl Items
 
 			let value = i.drugtype;
 			write_tag_i!(buffer, value, "DrugType", forcewriteFirst);
-	
+
+			let value = i.foodtype;
+			write_tag_i!(buffer, value, "FoodType", forcewriteFirst);
+
 			let value = i.usActionItemFlag;
 			write_tag_i!(buffer, value, "usActionItemFlag", forcewriteFirst);
 
@@ -2065,6 +2068,7 @@ impl Items
 				let flatbase = i.flatbasemodifier[j];
 				let percentbase = i.percentbasemodifier[j];
 				let flataim = i.flataimmodifier[j];
+				let percentaim = i.percentaimmodifier[j];
 				let percentcap = i.percentcapmodifier[j];
 				let percenthandling = i.percenthandlingmodifier[j];
 				let targettracking = i.targettrackingmodifier[j];
@@ -2072,7 +2076,7 @@ impl Items
 				let maxcounterforce = i.maxcounterforcemodifier[j];
 				let counterforceaccuracy = i.counterforceaccuracymodifier[j];
 				let aimlevels = i.aimlevelsmodifier[j];
-	
+				
 				if forcewriteFirst == false && flatbase == 0 && percentbase == 0 && flataim == 0 && percentcap == 0 && percenthandling == 0 && targettracking == 0 && dropcompensation == 0 && maxcounterforce == 0 && counterforceaccuracy == 0 && aimlevels == 0
 				{
 					write!(buffer, "\t\t<{} />\n", s[j]).unwrap();
@@ -2092,6 +2096,10 @@ impl Items
 					if flataim != 0 || forcewriteFirst == true {
 						write!(buffer, "\t").unwrap();
 						write_tag_i!(buffer, flataim, "FlatAim", forcewriteFirst);
+					}
+					if percentaim != 0 || forcewriteFirst == true {
+						write!(buffer, "\t").unwrap();
+						write_tag_i!(buffer, percentaim, "PercentAim", forcewriteFirst);
 					}
 					if percentcap != 0 || forcewriteFirst == true {
 						write!(buffer, "\t").unwrap();
