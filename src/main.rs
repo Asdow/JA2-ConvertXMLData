@@ -533,7 +533,7 @@ struct InvType
 
 	nasAttachmentClass: u64,
 	nasLayoutClass: u64,
-	ulAvailableAttachmentPoint: u64,
+	ulAvailableAttachmentPoint: Vec<u64>,
 	ulAttachmentPoint: u64,
 	usItemFlag: u64, // bitflags to store various item properties (better than introducing 64 BOOLEAN values). If I only had thought of this earlier....
 	usItemFlag2: u64, // bitflags to store various item properties
@@ -689,7 +689,7 @@ impl InvType{
 		
 			nasAttachmentClass : 0,
 			nasLayoutClass : 0,
-			ulAvailableAttachmentPoint : 0,
+			ulAvailableAttachmentPoint : Vec::new(),
 			ulAttachmentPoint : 0,
 			usItemFlag : 0, // bitflags to store various item properties (better than introducing 64 BOOLEAN values). If I only had thought of this earlier....
 			usItemFlag2 : 0, // bitflags to store various item properties
@@ -903,7 +903,7 @@ impl Items
 						b"AttachmentClass" => { item.attachmentclass = parseu32(reader, buf, &name); }
 						b"nasAttachmentClass" => { item.nasAttachmentClass = parseu64(reader, buf, &name); }
 						b"nasLayoutClass" => { item.nasLayoutClass = parseu64(reader, buf, &name); }
-						b"AvailableAttachmentPoint" => { item.ulAvailableAttachmentPoint = parseu64(reader, buf, &name); }
+						b"AvailableAttachmentPoint" => { item.ulAvailableAttachmentPoint.push(parseu64(reader, buf, &name)); }
 						b"AttachmentPoint" => { item.ulAttachmentPoint = parseu64(reader, buf, &name); }
 						b"AttachToPointAPCost" => { item.ubAttachToPointAPCost = parseu8(reader, buf, &name); }
 						b"ubClassIndex" => { item.ubClassIndex = parseu16(reader, buf, &name); }
@@ -1573,8 +1573,11 @@ impl Items
 			let value = i.nasLayoutClass;
 			write_tag_i!(buffer, value, "nasLayoutClass", forcewriteFirst);
 
-			let value = i.ulAvailableAttachmentPoint;
-			write_tag_i!(buffer, value, "AvailableAttachmentPoint", forcewriteFirst);
+			for j in 0..i.ulAvailableAttachmentPoint.len()
+			{
+				let value = i.ulAvailableAttachmentPoint[j];
+				write_tag_i!(buffer, value, "AvailableAttachmentPoint", forcewriteFirst);
+			}
 
 			let value = i.ulAttachmentPoint;
 			write_tag_i!(buffer, value, "AttachmentPoint", forcewriteFirst);
