@@ -36,10 +36,16 @@ macro_rules! write_tag_s {
 
 		if empty == false || $forcewrite == true
 		{
-			let s: String;
+			let mut s: String;
 			if $value.contains("&")
 			{ s = $value.replace("&", "&amp;"); }
 			else { s = $value.clone(); }
+
+			if s.contains("<")
+			{ s = s.replace("<", "&lt;"); }
+
+			if s.contains(">")
+			{ s = s.replace(">", "&gt;"); }
 
 			match write!($file, "\t\t<{}>{}</{}>\n", $tag, s, $tag)
 			{
